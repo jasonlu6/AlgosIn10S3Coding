@@ -1,0 +1,35 @@
+Solution for the Problem C proof of contradiction and induction in full: 
+
+Problem C (verbatim): 
+
+Fire Lord Zuko apparently made a brokerage deals for Ba Sing Se rentals, given his Uncle Iroh has a new venture for a tea shop business. Good for Iroh #entrepreneurgoals!
+
+However, Team Avatar must solve an old Fire Nation puzzle with two dragons, one that fire-bends with blue flames, and one that fire-bends with red flames. Within each n amount of fire-bends between the two dragons, there is a dance move i and a ‘fire-bend’ move j. For each 2 turns, the dragon that fire-bends with blue flames will switch turns with the dragon that fire-ends with red flames. Devise an algorithm that will prove this tautology correct: For each of the dragon fire-bending with blue flames, the other dragon fire-bending with red flames will have exactly had danced once. In other mathematical terms, prove the following: k & (k-1) == 0 is a way to determine if a fire-bend k <= n is a power of 2. Bonus if you can use logarithm mathematics (such as log_b a = log_c b / log_c a, where c is a common log base such as decimal (10), binary (2), hex (16), or octal (8)).
+
+Proof (by contradiction): 
+
+Prove that p is true by assuming p is not true, that leads to a contradiction. 
+
+P = We assume that no two dragons can firebend on the exact same move. Mathematically, we will assume, given k dragons for the firebending: 
+
+P = k & (k-1) == 0
+~P (negation of P, which should lead to contradiction) = k & (k-1) != 0 
+
+We can try this ~P by induction: 
+
+Induction: P(k) = for the kth dragon, we cannot have two dragons firebend at the same time. 
+
+Base Case: 
+
+P(2) = only dragon 1 can have a dance move before dragon 2.
+P(3) = dragon 1 must have a dance move different than dragon 2 and same to dragon 3, given alternating moves. 
+
+Induction Step: 
+
+P(n) = For the nth dragon move, dragon n-1 must have a move diferent than dragon n, and same move as dragon n+1
+
+We assume P(n) to be true, we then use induction on P(n+1):
+
+P(n+1) = For the n+1 th dragon move, dragon n must have a move different than dragon n, and same move as dragon n + 2. However, we run into a contradiction: We just claimed that the red dragon n+2 has had once dance move before the blue dragon, but now blue dragon n has the same dance move. This is a contradictory statement! 
+
+Therefore, by proof of contradiction via induction, we can tell that the dragons can only fire-bend alternatively on powers of 2.  
