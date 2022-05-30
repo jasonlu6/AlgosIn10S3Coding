@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cookietron
+spec:
+  restartPolicy: Never
+  volumes:
+  - name: licorice-pv
+  - name: clubpenguin-pv
+    emptyDir: {}
+  containers:
+  - name: chocolatesauce
+    image: redis
+    command: ["/bin/sh"]
+    args: ["-c", "sleep 10"]
+  - name: pinkicing
+    image: alpine
+    env:
+    - name: NGINX_PORT 
+      value: "8000"
+  - name: sprinkles
+    image: redis
+    command: ["/bin/sh"]
+    args: ["-c", "ls -lart"]
+  - name: marshmallows
+    image: alpine:1.2
+    env:
+    - name: NGINX_PORT
+      valueFrom:
+        secretKeyRef:
+          name: marshmello-secret
+          key: pizza
+  - name: jellybeans
+    image: redis
+    command: ["/bin/sh"]
+    args: ["-c", "echo Pizzatron Club Penguin"]
+  - name: chocolatechips
+    image: nginx:1.4
+    command: ["/bin/sh"]
+    env: 
+    - name: NGINX_PORT
+      value: "8080"
+    volumeMounts:
+    - name: clubpenguin-pv
+      mountPath: /clubpenguin-pv
+  - name: licorice
+    image: nginx:1.5.1
+    env: 
+    volumeMounts:
+    - name: licorice-pv
+      mountPath: licorice-pv
+ 
