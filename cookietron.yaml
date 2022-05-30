@@ -48,5 +48,5 @@ spec:
     env: 
     volumeMounts:
     - name: licorice-pv
-      mountPath: licorice-pv
+      mountPath: /licorice-pv
  
