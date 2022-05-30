@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pizzatron-ticket
+spec:
+  containers:
+  - name: pizzatron-ticket
+    image: redis
+    volumeMounts:
+    - name: kitchen
+      mountPath: "/etc/kitchen"
+      readOnly: true
+  volumes:
+  - name: kitchen
+    configMap:
+      name: cm-kitchen
+
