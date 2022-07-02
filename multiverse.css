@@ -1,0 +1,18 @@
+/* CSS for Algos in 10 Episode 4 */ 
+
+h1.english {
+  color: blue;
+  background: red;
+}
+
+h1.spanish {
+  color: red;
+  background: yellow;
+}
+
+h1.chinese {
+  color: yellow;
+  background: red;
+}
+
+
