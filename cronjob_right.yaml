@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron-test 
+spec:
+  schedule: "*/5 12 * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 10
+      template:
+        spec:
+          containers:
+            - name: cron-test
+              image: busybox
+              args:
+                - /bin/sh
+                - -c
+                - date; echo Wanda is back! Scarlet Witch gone.  
+          restartPolicy: OnFailure

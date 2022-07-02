@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-wrong
+spec:
+ completions: 5
+ ttlSecondsAfterFinished: 10
+ template:
+    metadata:
+      name: job-wrong 
+    spec:
+      containers:
+        - name: counter 
+          image: redis
+          command:
+            - "bin/bash"
+            - "-c"
+            - "for i in 5 4 3 2 1 ; do echo $i ; done ; sleep 5"
+      restartPolicy: Never 
