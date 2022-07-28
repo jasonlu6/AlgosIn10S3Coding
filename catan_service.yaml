@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: catan-pod
+  labels:
+    app.kubernetes.io/name: player1
+spec:
+  containers:
+  - name: player1
+    image: player1:catan
+    ports:
+      - containerPort: 8080
+        name: catan-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catan-service
+spec:
+  selector:
+    app.kubernetes.io/name: CatanPlayerService
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 3030
