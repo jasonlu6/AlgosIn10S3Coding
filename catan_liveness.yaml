@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: catan-liveness-test
+  name: catan-liveness-exec
+spec:
+  containers:
+  - name: catan-liveness
+    image: k8s.gcr.io/busybox
+    args:
+    - /bin/sh
+    - -c
+    - touch /tmp/healthy; sleep 30; rm -f /tmp/healthy; sleep 600
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5
+  - name: catan-player1
+    image: k8s.gcr.io/player1
+    args:
+    - /bin/sh
+    - -c
+    - echo "I want 3 sheep, 2 ores for 5 pieces of brick and 3 wheat" > player2.txt 
+    - echo "I refuse to trade with player 3." > player2.txt 
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5
+  - name: catan-player2
+    image: k8s.gcr.io/player2
+    args:
+    - /bin/sh
+    - -c
+    - echo "I want to build a settlement" > player1.txt 
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5
+  - name: catan-player3
+    image: k8s.gcr.io/player3
+    args:
+    - /bin/sh
+    - -c
+    - echo "I want a coastal settlement. Trade with player 2 10 ore and 4 sheep with 5 pieces of brick and 12 wheat." > player2.txt 
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5
+
+
+
